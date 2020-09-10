@@ -1,8 +1,12 @@
 const get = require('simple-get');
 
-function getRobots(getUrl) {
+function getRobots(getUrl, timeout) {
   return new Promise((resolve, reject) => {
-    get.concat(getUrl, (error, response, body) => {
+    get.concat({
+      method: 'GET',
+      url: getUrl,
+      timeout: timeout
+    }, (error, response, body) => {
       if (!error) {
         resolve(body.toString());
       } else {
